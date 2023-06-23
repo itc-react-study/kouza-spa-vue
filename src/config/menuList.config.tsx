@@ -1,4 +1,6 @@
 import OperatorStatusList from '@/views/main/operator-status-list/OperatorStatusList.vue'
+import TransactionsList from '@/views/main/transactions-list/TransactionsList.vue'
+
 
 export const MAIN = '/Main/'
 
@@ -13,14 +15,14 @@ export const MENU_LIST = [
     isShow: true,
     path: MAIN + 'TransactionsList',
     title: '取引一覧表示',
-    component: OperatorStatusList
+    component: TransactionsList
   },
 
   {
     isShow: true,
     path: MAIN + 'ErrorList',
     title: 'エラー処理未済一覧',
-    component: OperatorStatusList
+    component: TransactionsList
   },
   {
     isShow: true,
