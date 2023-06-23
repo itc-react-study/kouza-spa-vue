@@ -16,7 +16,7 @@
     <a-layout>
       <a-layout-header :style="{ background: '#fff', padding: 0 }" />
 
-      <a-layout-content :style="{ margin: '24px 16px 0' }">
+      <a-layout-content :style="{ background: '#fff', margin: '24px 16px 0' }">
         <div :style="{ padding: '16px', height: '100%' }">
           <RouterView />
         </div>
