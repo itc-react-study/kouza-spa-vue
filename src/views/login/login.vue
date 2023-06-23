@@ -33,6 +33,9 @@
 </template>
 
 <script lang="ts">
+import { getApi } from '@/common/service/api.service'
+import { ApiIds } from '@/constants/api-id.constant'
+import type { SH1APIDUMLGNRequestBody } from '@/interfaces/api/shiapidumlgn'
 import { defineComponent, reactive } from 'vue'
 
 interface FormState {
@@ -47,8 +50,15 @@ export default defineComponent({
       password: ''
     })
 
-    const onFinish = (values: any) => {
+    const onFinish = async (values: FormState) => {
       console.log('Success:', values)
+
+      const param: SH1APIDUMLGNRequestBody = {
+        userName: values.username,
+        userPwd: values.password
+      }
+
+      const response = await getApi(ApiIds.SH1APIDUMLGN, param)
     }
 
     const onFinishFailed = (errorInfo: any) => {
