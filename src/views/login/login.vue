@@ -37,14 +37,17 @@ import { getApi } from '@/common/service/api.service'
 import { ApiIds } from '@/constants/api-id.constant'
 import type { SH1APIDUMLGNRequestBody } from '@/interfaces/api/shiapidumlgn'
 import { defineComponent, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 interface FormState {
   username: string
   password: string
 }
 
-export default defineComponent({
+const Login = defineComponent({
   setup() {
+    const router = useRouter()
+
     const formState = reactive<FormState>({
       username: '',
       password: ''
@@ -59,6 +62,10 @@ export default defineComponent({
       }
 
       const response = await getApi(ApiIds.SH1APIDUMLGN, param)
+
+      router.push({
+        path: '/Main'
+      })
     }
 
     const onFinishFailed = (errorInfo: any) => {
@@ -72,4 +79,16 @@ export default defineComponent({
     }
   }
 })
+
+export default Login
 </script>
+
+<style>
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
