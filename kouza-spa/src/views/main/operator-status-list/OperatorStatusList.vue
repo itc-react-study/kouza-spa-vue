@@ -6,12 +6,11 @@
           <span>拠点別</span>
         </div>
         <div className="operator-status-list-div-right">
-          <a-select
-            v-model:value="location"
-            mode="tags"
-            style="width: 100%"
-            :options="locationCd"
-          ></a-select>
+          <a-select v-model:value="location" style="width: 100%">
+            <a-select-option :key="index" v-for="(item, index) in locationCd" :value="item.code">
+              {{ item.label }}</a-select-option
+            >
+          </a-select>
         </div>
       </div>
 
@@ -20,12 +19,11 @@
           <span>権限スキル</span>
         </div>
         <div className="operator-status-list-div-right">
-          <a-select
-            v-model:value="role"
-            mode="tags"
-            style="width: 100%"
-            :options="roleCd"
-          ></a-select>
+          <a-select v-model:value="role" style="width: 100%">
+            <a-select-option :key="index" v-for="(item, index) in roleCd" :value="item.code">
+              {{ item.label }}</a-select-option
+            >
+          </a-select>
         </div>
       </div>
 
@@ -34,12 +32,11 @@
           <span>業務スキル</span>
         </div>
         <div className="operator-status-list-div-right">
-          <a-select
-            v-model:value="businessRole"
-            mode="tags"
-            style="width: 100%"
-            :options="businessRoleCd"
-          ></a-select>
+          <a-select v-model:value="businessRole" style="width: 100%">
+            <a-select-option :key="index" v-for="(item, index) in businessRoleCd" :value="item.code">
+              {{ item.label }}</a-select-option
+            >
+          </a-select>
         </div>
       </div>
 
@@ -48,12 +45,11 @@
           <span>ステータス</span>
         </div>
         <div className="operator-status-list-div-right">
-          <a-select
-            v-model:value="treatmentStatus"
-            mode="tags"
-            style="width: 100%"
-            :options="treatmentStatusCd"
-          ></a-select>
+          <a-select v-model:value="treatmentStatus" style="width: 100%">
+            <a-select-option :key="index" v-for="(item, index) in treatmentStatusCd" :value="item.code">
+              {{ item.label }}</a-select-option
+            >
+          </a-select>
         </div>
       </div>
 
@@ -89,33 +85,36 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+//  使用组合式 API
+
 import {
   BUSINESS_ROLE,
   CODE_LOCATION_CD,
   ROLE_CD,
   TREATMENT_STATUS
 } from '@/constants/code-list.constants'
-import { defineComponent, ref } from 'vue'
+import { reactive, ref } from 'vue'
 
-const OperatorStatusList = defineComponent({
-  setup() {
-    return {
-      value1: '',
-      value2: '',
-      location: ref([]),
-      locationCd: CODE_LOCATION_CD,
-      role: ref([]),
-      roleCd: ROLE_CD,
-      businessRole: ref([]),
-      businessRoleCd: BUSINESS_ROLE,
-      treatmentStatus: ref([]),
-      treatmentStatusCd: TREATMENT_STATUS
-    }
-  }
-})
+const value1 = ref('')
 
-export default OperatorStatusList
+const value2 = ref('')
+
+const location = ref('')
+
+const locationCd = reactive(CODE_LOCATION_CD)
+
+const role = ref('')
+
+const roleCd = reactive(ROLE_CD)
+
+const businessRole = ref('')
+
+const businessRoleCd = reactive(BUSINESS_ROLE)
+
+const treatmentStatus = ref('')
+
+const treatmentStatusCd = reactive(TREATMENT_STATUS)
 </script>
 
 <style>

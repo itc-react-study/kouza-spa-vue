@@ -25,39 +25,30 @@
   </a-layout>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+//  使用组合式 API
+
 import { MENU_LIST } from '@/config/menuList.config'
-import { defineComponent, ref } from 'vue'
+import { reactive } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
 
-const Main = defineComponent({
-  setup() {
-    const router = useRouter()
+const menuLists = reactive(MENU_LIST)
 
-    const onCollapse = (collapsed: boolean, type: string) => {
-      console.log(collapsed, type)
-    }
+const router = useRouter()
 
-    const onBreakpoint = (broken: boolean) => {
-      console.log(broken)
-    }
+const onCollapse = (collapsed: boolean, type: string) => {
+  console.log(collapsed, type)
+}
 
-    const onMenuClick = (item) => {
-      router.push({
-        path: item.path
-      })
-    }
+const onBreakpoint = (broken: boolean) => {
+  console.log(broken)
+}
 
-    return {
-      menuLists: MENU_LIST,
-      onCollapse,
-      onBreakpoint,
-      onMenuClick
-    }
-  }
-})
-
-export default Main
+const onMenuClick = (item: { path: any }) => {
+  router.push({
+    path: item.path
+  })
+}
 </script>
 
 <style>

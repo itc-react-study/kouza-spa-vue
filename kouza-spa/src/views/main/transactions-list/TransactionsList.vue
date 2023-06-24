@@ -4,12 +4,4 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-const TransactionsList = defineComponent({
-  setup() {}
-})
-
-export default TransactionsList
-</script>
+<script setup lang="ts"></script>
