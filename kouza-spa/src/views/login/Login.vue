@@ -32,11 +32,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+//  使用组合式 API
 import { getApi } from '@/common/service/api.service'
 import { ApiIds } from '@/constants/api-id.constant'
 import type { SH1APIDUMLGNRequestBody } from '@/interfaces/api/shiapidumlgn'
-import { defineComponent, reactive } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 interface FormState {
@@ -44,43 +45,31 @@ interface FormState {
   password: string
 }
 
-const Login = defineComponent({
-  setup() {
-    const router = useRouter()
+const router = useRouter()
 
-    const formState = reactive<FormState>({
-      username: '',
-      password: ''
-    })
-
-    const onFinish = async (values: FormState) => {
-      console.log('Success:', values)
-
-      const param: SH1APIDUMLGNRequestBody = {
-        userName: values.username,
-        userPwd: values.password
-      }
-
-      const response = await getApi(ApiIds.SH1APIDUMLGN, param)
-
-      router.push({
-        path: '/Main'
-      })
-    }
-
-    const onFinishFailed = (errorInfo: any) => {
-      console.log('Failed:', errorInfo)
-    }
-
-    return {
-      formState,
-      onFinish,
-      onFinishFailed
-    }
-  }
+const formState = reactive<FormState>({
+  username: '',
+  password: ''
 })
 
-export default Login
+const onFinish = async (values: FormState) => {
+  console.log('Success:', values)
+
+  const param: SH1APIDUMLGNRequestBody = {
+    userName: values.username,
+    userPwd: values.password
+  }
+
+  const response = await getApi(ApiIds.SH1APIDUMLGN, param)
+
+  router.push({
+    path: '/Main'
+  })
+}
+
+const onFinishFailed = (errorInfo: any) => {
+  console.log('Failed:', errorInfo)
+}
 </script>
 
 <style>
